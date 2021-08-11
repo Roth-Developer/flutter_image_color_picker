@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Plugin example app'),
       ),
       body: Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           child: Text('View Image'),
           onPressed: () {
             Navigator.push(
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(
                     builder: (context) => NetworkImageBG(
                           networkpath:
-                              'https://media-exp1.licdn.com/dms/image/C5122AQEZISWpS2kJLg/feedshare-shrink_800/0?e=1588809600&v=beta&t=udluuJuG3m5_Gv94Gxt9ftp51oMa4Dh2mspBAMO2_nA',
+                              'https://i.pinimg.com/originals/1f/c6/69/1fc66962352f4f2cdef41af009215cc4.jpg',
                         )));
           },
         ),

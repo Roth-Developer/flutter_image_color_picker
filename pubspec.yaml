@@ -4,12 +4,12 @@ version: 1.0.7
 homepage: https://github.com/zeeshux7860/flutter_image_color_picker
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  image: ^2.1.4
+  image: ^3.0.2
 
 dev_dependencies:
   flutter_test:

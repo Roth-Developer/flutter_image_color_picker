@@ -6,15 +6,15 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class ColorDetection {
-  final GlobalKey currentKey;
-  final StreamController<Color> stateController;
-  final GlobalKey paintKey;
+  final GlobalKey? currentKey;
+  final StreamController<Color>? stateController;
+  final GlobalKey? paintKey;
 
-  img.Image photo;
+  img.Image? photo;
   // const ColorDetection({Key key, this.title}) super(key: key);
 
   ColorDetection({
-    Key key,
+    Key? key,
     this.currentKey,
     this.stateController,
     this.paintKey,
@@ -28,31 +28,25 @@ class ColorDetection {
   }
 
   _calculatePixel(Offset globalPosition) {
-    RenderBox box = currentKey.currentContext.findRenderObject();
+    RenderBox box = currentKey!.currentContext!.findRenderObject() as RenderBox;
     Offset localPosition = box.globalToLocal(globalPosition);
 
     double px = localPosition.dx;
     double py = localPosition.dy;
 
-    if (!true) {
-      double widgetScale = box.size.width / photo.width;
-      print(py);
-      px = (px / widgetScale);
-      py = (py / widgetScale);
-    }
-
-    int pixel32 = photo.getPixelSafe(px.toInt(), py.toInt());
+    int pixel32 = photo!.getPixelSafe(px.toInt(), py.toInt());
     int hex = abgrToArgb(pixel32);
 
-    stateController.add(Color(hex));
+    stateController!.add(Color(hex));
     return Color(hex);
   }
 
   Future<void> loadSnapshotBytes() async {
-    RenderRepaintBoundary boxPaint = paintKey.currentContext.findRenderObject();
+    RenderRepaintBoundary boxPaint =
+        paintKey!.currentContext!.findRenderObject() as RenderRepaintBoundary;
     ui.Image capture = await boxPaint.toImage();
-    ByteData imageBytes =
-        await capture.toByteData(format: ui.ImageByteFormat.png);
+    ByteData imageBytes = await (capture.toByteData(
+        format: ui.ImageByteFormat.png) as FutureOr<ByteData>);
     setImageBytes(imageBytes);
     capture.dispose();
   }
